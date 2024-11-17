@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Login</title>
+    
+    <style>
+        .blueBackground {
+            background-color: #339be0;
+        }
+        
+    </style>
+</head>
+<body>
+    
+    <div class="container-fluid" id="loginBox">
+        
+            <div class="card">
+                <div class="card-header py-2 border-0 blueBackground d-flex justify-content-between">
+                    <img class="d-none" src="/assets/logo-footer.png">
+                    <div class="my-auto">
+                    <!--if we enter the right side college name then here enter the college name -->
+                    </div>
+                </div>
+                <div class="card-body mx-1 mx-sm-5">
+                    <form class="form-signin mx-1 mx-sm-5" id="signinForm"  [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                        <input type="hidden" class="_csrf">
+                        <h5 class="card-title">STAFF SIGN IN</h5>
+
+                        <div class="form-group">
+                            <label class="sr-only" for="username"></label>
+                            <input type="text" formControlName="username" id="password" name="username" class="form-control" placeholder="Enter Username" required aria-describedby="nameHelp">
+                            <div *ngIf="loginForm.get('username')?.invalid && (loginForm.get('username')?.touched || submitted)">
+                                <small class="text-danger">Username is required.</small>
+                            </div>
+                            <small id="nameHelp" class="form-text text-muted"></small>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="{{ type }}" formControlName="password" id="password" name="password" class="form-control" placeholder="Enter Password" required aria-describedby="hint">
+                                <div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.touched || submitted)">
+                                    <small class="text-danger">Password is required.</small>
+                                </div>
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="button" (click)="toggleVisibility()">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <small id="hint" class="form-text text-muted"></small>
+                        </div>
+
+                        <div class="form-group text-center">
+                            <a href="#" id="forgotPasswordLink" class="text-decoration-none">Forgot Password?</a>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" id="submitBtn" class="btn blueBackground text-light fw-bold">LogIn</button>
+                          
+                        </div>
+
+                    </form>
+
+
+                </div>
+                <div class="card-footer blueBackground text-light text-center fw-bold  my-0">
+                    <span class="small">Copyright ©</span> <span class="fst-italic small">2024</span><span class="fw-bold ps-1"> <span
+                            class="d-none d-sm-inline-block">Software Development
+                            Cell,</span><span class="d-inline-block d-sm-none">SDA,</span>Symbiosis</span>
+                </div>
+            </div>
+        
+    </div>
+  
+    
+    
+</body>
+</html>

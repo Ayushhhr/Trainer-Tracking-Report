@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="header">
+        <app-admin-header></app-admin-header>
+    </div>
+    <div class="main-container">
+      <div class="side-nav">
+        <app-admin-navbar></app-admin-navbar>
+      </div>
+      
+    <div class="mainbar">
+        <div *ngIf="profile" class="profile-details">
+            <h2>Topic Name: {{topic.tname}}</h2>
+            
+            <h3></h3>
+
+            <table id="topic">
+                <tr>
+                    <th style="width: 100px;">Sr.No</th>
+                    <th>SubTopic</th>
+                    <th style="width: 200px;">Given Hours</th>
+                    <th>Hours Completed</th>
+                    <th>Extra Hours</th>
+                    <th>Hours Needed to Complete</th>
+                </tr>
+                <tr *ngFor="let s of topic.subtopic ,let i = index" >
+                    <td>{{i+1}}</td>
+                    <td>{{s.sname}}</td>
+                    <td>{{s.shours}}</td>
+                    <td>{{ subtopicsTaughtHours[s.sid] }}</td>
+                    <td>{{ getExtraHours(s) }}</td>
+                    <td>{{ getHoursNeeded(s) }}</td>
+
+                </tr>
+                <tr>
+                    <td colspan="2"><strong>Total</strong></td>
+                   
+                    <td><strong>{{ getTotalGivenHours() }}</strong></td>
+                    <td><strong>{{ getTotalCompletedHours() }}</strong></td>
+                    <td><strong>{{ getTotalExtraHours() }}</strong></td>
+                    <td><strong>{{ getTotalHoursNeeded() }}</strong></td>
+                  </tr>
+            </table>
+        </div>
+    </div>
+
+    </div>
+  </div>

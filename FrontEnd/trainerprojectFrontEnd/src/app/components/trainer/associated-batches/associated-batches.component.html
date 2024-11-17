@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="header">
+        <app-trainer-header></app-trainer-header>
+    </div>
+    <div class="main-container">
+        <div class="side-nav">
+            <app-trainer-navbar></app-trainer-navbar>
+        </div>
+        <div class="mainbar">
+            <div class="table-container">
+                <h1 class="main-title">Batch Details Table</h1>
+                <!--search box-->
+                <div class="topnav">
+                    <input type="text" [(ngModel)]="searchtext" placeholder="Search..">
+                </div>
+                <table id="trainer"  class="topic-details">
+                    <tr>
+                        <th style="width: 200px;">Sr.No</th>
+                        <th>Batch Name</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                    <ng-container *ngIf="(batches | async | batchFilter:searchtext) as filteredBatches">
+                        <ng-container *ngIf="filteredBatches.length > 0; else notFound">
+                            <tr *ngFor="let b of filteredBatches; let i = index" class="subtopic-details">
+                                <td>{{i+1}}</td>
+                                <td>{{b.bname}}</td>
+                                <td>{{b.creation_date}}</td>
+                                <td>{{b.end_date}}</td>
+                                <td>
+                                    <span *ngIf="isBatchCompleted(b.end_date)">Completed</span>
+                                </td>
+                                <td>
+                                    <button class="button" style="vertical-align:middle" (click)="profileDetails(trainerId,profileId,b.bid)"><span>Topics </span></button>
+                                </td>
+                            </tr>
+                        </ng-container>
+                    </ng-container>
+                </table>
+                <ng-template #notFound>
+                    <tr>
+                        <td colspan="4" class="not-found">No records found</td>
+                    </tr>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>

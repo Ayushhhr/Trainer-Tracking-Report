@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="header">
+        <app-admin-header></app-admin-header>
+    </div>
+    <div class="main-container">
+      <div class="side-nav">
+        <app-admin-navbar></app-admin-navbar>
+      </div>
+      
+      <div class="mainbar">
+        <div class="table-container">
+            <h1 class="main-title">Profiles Details Table</h1>
+            <!--search box-->
+            <div class="topnav">
+                <input type="text" [(ngModel)]="searchtext" placeholder="Search..">
+            </div>
+                <table id="trainer">
+                        <tr>
+                            <th style="width: 50px;">Sr.No</th>
+                            <th style="width: 250px;">First Name</th>
+                            <th style="width: 250px;">Last Name</th>
+                            <th>Mobile</th>
+                            <th>Email</th>
+                            <th>Address</th>
+                            <th>Action</th>
+                        </tr>
+        
+                        <ng-container *ngIf="(profiles | async | profileFilter:searchtext) as filteredProfiles">
+                            <ng-container *ngIf="filteredProfiles.length > 0; else notFound">
+                                <tr *ngFor="let p of filteredProfiles; let i = index" >
+                                    <td>{{i+1}}</td>
+                                    <td>{{p.firstName}}</td>
+                                    <td>{{p.lastName}}</td>
+                                    <td>{{p.mobNum}}</td>
+                                    <td>{{p.email}}</td>
+                                    <td>{{p.address}}</td>
+                                    <td>
+                                        <mat-icon class="mat" style="color: green" (click)="profileDetails(p.id)">view_list</mat-icon>
+                                        <mat-icon class="mat" style="color: rgb(108, 145, 239);" (click)="updateProfile(p.id)">edit</mat-icon>
+                                        <mat-icon class="mat" style="color: rgb(237, 74, 74);" (click)="deleteProfile(p.id)">delete</mat-icon>
+                                    </td>
+                                </tr>
+                            </ng-container>
+                        </ng-container>
+                        
+                </table>
+                <ng-template #notFound>
+                    <tr>
+                        <td colspan="7" class="not-found">No records found</td>
+                    </tr>
+                </ng-template>
+            </div>
+      </div>
+    </div>
+</div>

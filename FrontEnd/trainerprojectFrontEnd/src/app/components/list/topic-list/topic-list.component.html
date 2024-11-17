@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="header">
+        <app-admin-header></app-admin-header>
+    </div>
+    <div class="main-container">
+      <div class="side-nav">
+        <app-admin-navbar></app-admin-navbar>
+      </div>
+      <div class="mainbar">
+        <div class="table-container">
+            <h1 class="main-title">Topic Details Table</h1>
+              <!--search box-->
+              <div class="topnav">
+                <input type="text" [(ngModel)]="searchtext" placeholder="Search..">
+              </div>
+                <table id="trainer">
+                        <tr>
+                            <th style="width: 200px;">Sr.No</th>
+                            <th>Topic name</th>
+                            <th>Hours</th>
+                            <th>Action</th>
+                        </tr>
+        
+                        <ng-container *ngIf="(topics | async | topicFilter:searchtext) as filteredTopics">
+                          <ng-container *ngIf="filteredTopics.length > 0; else notFound">
+                              <tr *ngFor="let t of filteredTopics; let i = index" >
+
+                                <td>{{i+1}}</td>
+                                <td>{{t.tname}}</td>
+                                <td>{{t.hours}}</td>
+                                
+                                <td>
+                                   
+                                  <mat-icon class="mat" style="color: green" (click)="topicDetails(t.tid)">view_list</mat-icon>
+                                  <mat-icon class="mat" style="color: rgb(108, 145, 239);" (click)="updateTopic(t.tid)">edit</mat-icon>
+                                  <mat-icon class="mat" style="color: rgb(237, 74, 74);" (click)="deleteTopic(t.tid)">delete</mat-icon>
+                                </td>
+                              </tr>
+                          </ng-container>
+                      </ng-container>
+                        
+                </table>
+                <ng-template #notFound>
+                  <tr>
+                      <td colspan="4" class="not-found">No records found</td>
+                  </tr>
+              </ng-template>
+            </div>
+      </div>
+    </div>
+  </div>

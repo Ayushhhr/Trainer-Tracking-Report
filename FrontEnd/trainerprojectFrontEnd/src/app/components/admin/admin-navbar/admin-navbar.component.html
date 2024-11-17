@@ -1,0 +1,114 @@
+<div class="nav-items">
+  <ul>  
+    <li>
+      <div class="nav-item">
+        <span routerLink="/admin-dashboard">Home</span>
+      </div>
+    </li>
+    <li class="parent-item" (click)="toggleSubMenu('profile')">
+      <div class="nav-item">
+        <span>Profile</span>
+        
+        <i class="fa-solid fa-chevron-right"></i>
+        
+      </div>
+      <ul class="submenu" *ngIf="showProfileSubMenu">
+        <li>
+          <div class="nav-item">
+            <a><span routerLink="/addProfile">Add Profile</span></a>
+          </div>
+        </li>
+        <li>
+          <div class="nav-item">
+            <a><span routerLink="/listProfile">Profile List</span></a>
+          </div>
+        </li>
+      </ul>
+    </li>
+    <li class="parent-item" (click)="toggleSubMenu('trainer')">
+      <div class="nav-item">
+        <span>Access</span>
+        <i class="fa-solid fa-chevron-right"></i>
+      </div>
+      <ul class="submenu" *ngIf="showTrainerSubMenu">
+        <li>
+          <div class="nav-item">
+            <a><span routerLink="/listTrainer">Username List</span></a>
+          </div>
+        </li>
+      </ul>
+    </li>
+    <li class="parent-item" (click)="toggleSubMenu('batch')">
+      <div class="nav-item">
+        <span>Batch</span>
+        <i class="fa-solid fa-chevron-right"></i>
+      </div>
+      <ul class="submenu" *ngIf="showBatchSubMenu">
+        <li>
+          <div class="nav-item">
+            <a><span routerLink="/addBatch">Add Batch</span></a>
+          </div>
+        </li>
+        <li>
+          <div class="nav-item">
+            <a><span routerLink="/listBatch">Batch List</span></a>
+          </div>
+        </li>
+      </ul>
+    </li>
+    <li class="parent-item" (click)="toggleSubMenu('courses')">
+      <div class="nav-item">
+        <span>Courses</span>
+        <i class="fa-solid fa-chevron-right"></i>
+      </div>
+      <ul class="submenu" *ngIf="showCoursesSubMenu">
+        <li>
+          <div class="nav-item">
+            <a><span routerLink="/addCourse">Add Courses</span></a>
+          </div>
+        </li>
+        <li>
+          <div class="nav-item">
+            <a><span routerLink="/listCourse">Courses List</span></a>
+          </div>
+        </li>
+      </ul>
+    </li>
+    <li class="parent-item" (click)="toggleSubMenu('topic')">
+      <div class="nav-item">
+        <span>Topic</span>
+        <i class="fa-solid fa-chevron-right"></i>
+      </div>
+      <ul class="submenu" *ngIf="showTopicSubMenu">
+        <li>
+          <div class="nav-item">
+            <a><span routerLink="/addTopic">Add Topic</span></a>
+          </div>
+        </li>
+        <li>
+          <div class="nav-item">
+            <a><span routerLink="/listTopic">Topic List</span></a>
+          </div>
+        </li>
+      </ul>
+    </li>
+    <li class="parent-item" (click)="toggleSubMenu('subtopic')">
+      <div class="nav-item">
+        <span>Subtopic</span>
+        <i class="fa-solid fa-chevron-right"></i>
+      </div>
+      <ul class="submenu" *ngIf="showSubtopicSubMenu">
+        <li>
+          <div class="nav-item">
+            <a><span routerLink="/addSubtopic">Add Subtopic</span></a>
+          </div>
+        </li>
+        <li>
+          <div class="nav-item">
+            <a><span routerLink="/listSubtopic">Subtopic List</span></a>
+          </div>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>

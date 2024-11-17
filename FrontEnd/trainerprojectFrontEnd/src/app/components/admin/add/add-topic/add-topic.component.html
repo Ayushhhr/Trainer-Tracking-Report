@@ -1,0 +1,65 @@
+<div class="container">
+    <div class="header">
+        <app-admin-header></app-admin-header>
+    </div>
+    <div class="main-container">
+      <div class="side-nav">
+        <app-admin-navbar></app-admin-navbar>
+      </div>
+         
+      <div class="edit-container">
+        <div class="panel-heading">
+            <h2>Add Topic</h2>
+        </div>
+        <div class="form-container">
+            <form [formGroup]="topicForm" (ngSubmit)="onSubmit()">
+
+                
+
+                <div class="form-group">
+                    <label for="name">Topic Name:</label><br>
+                    <input formControlName="topic_name" type="text" class="form-control" id="tName" required [(ngModel)]="topic.tname" name="tname">
+                    <div *ngIf="topicForm.get('topic_name')?.invalid && (topicForm.get('topic_name')?.touched || submitted)">
+                        <small class="text-danger">Topic Name is required.</small>
+                    </div>
+                </div>
+
+                <div>
+                    <h3><b>Total Hours:</b> {{ totalHours }}</h3>
+                </div>
+                <br>
+                
+                <div class="form-group">
+
+
+                    <div class="form-group select-container">
+                        <label for="pro">Sub Topics: </label>
+
+                        <select formControlName="subtopicSelect" name="top" id="top" #selectSubtopic >
+                            <option value="" disabled>Select Topic</option>
+                            <option *ngFor="let s of subtopics | async ; let i = index" value="{{i}}">{{ s.sname }}</option>
+                        </select>
+                        <div *ngIf="topicForm.get('subtopicSelect')?.invalid && (topicForm.get('subtopicSelect')?.touched || submitted)">
+                            <small class="text-danger">Subtopic selection is required.</small>
+                        </div>
+                    </div>
+                    
+                   <button type="button" class="btn btn-primary" (click)="addSubtopic(selectSubtopic.value)">Add Sub Topic</button>
+                   <br>
+                   <p> SubTopic not in the List? <a routerLink="/addSubtopic">Add New</a> </p>
+                </div>
+              
+                <div *ngFor="let s of topic.subtopic" >
+                    <p><b>SubTopic:</b> {{s.sname}}</p>
+                    <p><b>Hours:</b> {{s.shours}}</p>
+                </div>
+                <div class="button-container">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+
+        
+      </div>
+    </div>
+</div>

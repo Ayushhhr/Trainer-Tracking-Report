@@ -1,0 +1,183 @@
+#loginBox {
+    position: absolute;
+    top: 75px;
+}
+
+body {
+    background-color: #ffffff;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.container-fluid {
+    height: 100vh;
+    width: 70%;
+    max-width: 800px;
+    align-items: center;
+    justify-content: center;
+}
+
+div.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, .125);
+    border-radius: 0.25rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.card-header {
+    padding: 10px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-title {
+    font-size: 18px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.form-signin {
+    max-width: 100%;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form-control {
+    width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+@media (min-width: 576px) {
+    .mr-sm-5,
+    .mx-sm-5 {
+        margin-right: 3rem!important;
+    }
+
+    .ml-sm-5,
+    .mx-sm-5 {
+        margin-left: 3rem!important;
+    }
+}
+
+button,
+select {
+    text-transform: none;
+}
+
+button,
+input {
+    overflow: visible;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+.d-flex {
+    display: flex!important;
+}
+
+.d-flex.justify-content-center {
+    text-align: center;
+}
+
+.justify-content-center {
+    justify-content: center!important;
+}
+
+.card-footer {
+    text-align: center;
+    padding: 10px;
+}
+
+.card-footer span {
+    font-size: 14px;
+}
+
+.card-footer small {
+    font-style: italic;
+    font-size: 10px;
+}
+
+#forgotPasswordLink {
+    color: #339be0;
+    font-size: 14px;
+    transition: color 0.3s ease;
+    text-align: right;
+}
+
+#forgotPasswordLink:hover {
+    color: #1e6bb8;
+}
+
+.input-group-append button {
+    border: none;
+    background: transparent;
+    
+    cursor: pointer;
+    padding: 0;}
+
+/* Align eye button to the right */
+.input-group-append {
+    position: absolute;
+    right: 135px; /* Adjust this value as needed */
+    top: 60%; /* Center vertically */
+    transform: translateY(-50%);
+    
+
+}
+.input-group-append button i {
+    font-size: 1rem;
+    color: #666; /* Adjust the color as needed */
+}
+
+/* Hover effect for the eye icon */
+.input-group-append button:hover i {
+    color: #333; /* Adjust the hover color as needed */
+}
+
+.text-danger {
+    color: red;
+}

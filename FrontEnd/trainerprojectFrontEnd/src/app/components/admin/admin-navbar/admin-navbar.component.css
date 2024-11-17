@@ -1,0 +1,74 @@
+
+.nav-items {
+    padding-top: 40px;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .nav-item span {
+    display: block;
+    width: 200%;
+    height: 100%;
+    text-decoration: none; /* Optional */
+    color: inherit; /* Optional: preserves text color */
+}
+  .nav-item {
+    padding: 25px 50px;
+    cursor: pointer;
+    position: relative; /* Added */
+  }
+  
+  @media only screen and (max-width: 1300px) {
+    .nav-item {
+        padding: 25px 40px;
+    }
+  }
+  
+  .nav-item:hover {
+    background-color: rgb(1, 38, 69);
+  }
+  
+  .fa-icon {
+    margin-right: 20px;
+    font-size: 22px;
+  }
+  
+  span {
+    display: inline;
+  }
+  
+  @media only screen and (max-width: 1300px) {
+    .nav-item {
+        padding: 25px 40px;
+    }
+  }
+  
+  @media only screen and (max-width: 1300px) {
+    span {
+        display: none;
+    }
+  }
+  .submenu {
+    display: none;
+    position:relative;
+    top: 100%;
+    left: 0;
+    background-color: #113c60;
+    padding: 8px 0;
+    margin-left: 25px;
+    list-style-type: none;
+    
+  }
+  .parent-item:hover .submenu {
+    display: block;
+  }
+  .nav-item:hover .submenu {
+    display: block;
+  }
+  .fa-chevron-right {
+    position: absolute;
+    right: 30px; /* Adjust this value as needed */
+    top: 50%;
+    transform: translateY(-50%);
+   
+  }

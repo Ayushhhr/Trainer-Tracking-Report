@@ -1,0 +1,17 @@
+DELIMITER $$
+
+CREATE PROCEDURE delete_profile_and_remove_profile_from_trainer(IN trainer_id INT)
+BEGIN
+    DECLARE profile_id_value INT;
+
+    -- Get the profile_id mapped to the specified trainer_id
+    SELECT profile_id INTO profile_id_value FROM trainer WHERE id = trainer_id;
+
+    -- Remove the profile mapping from the trainer
+    UPDATE trainer SET profile_id = NULL WHERE id = trainer_id;
+
+    -- Delete corresponding records from batch_profiles table
+    DELETE FROM batch_profiles WHERE profiles_id = profile_id_value;
+END$$
+
+DELIMITER ;

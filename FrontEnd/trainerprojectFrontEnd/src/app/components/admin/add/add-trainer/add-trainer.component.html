@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="header">
+        <app-admin-header></app-admin-header>
+    </div>
+    <div class="main-container">
+      <div class="side-nav">
+        <app-admin-navbar></app-admin-navbar>
+      </div>
+       
+      <div class="edit-container">
+        <div class="panel-heading">
+            <h2>Add Trainer</h2>
+        </div>
+        <div class="form-container">
+            <form (ngSubmit)="onSubmit()">
+
+                <div class="form-group">
+                    <label for="name">Trainer Email:</label><br>
+                    <input type="text" class="form-control" id="userName" required [(ngModel)]="trainer.username" name="uname">
+                </div>
+                
+                <div class="form-group">
+                    <div class="form-group select-container">
+                        <label for="pro">Profile: </label>
+                        <select name="top" id="top" #selectProfile >
+                            <option *ngFor="let p of profiles | async ; let i = index" value="{{i}}">{{ p.firstName }} {{ p.lastName }}</option>
+                        </select>
+                    </div>
+                    
+                   <button type="button" class="btn btn-primary" (click)="addProfile(selectProfile.value)">Add Profile</button>
+                   <br>
+                   <p> Profile not in the List? <a routerLink="/addProfile">Add New</a> </p>
+                </div>
+              
+                <div *ngIf="trainer.profile" >
+                    <p><b>Profile:</b> {{ trainer.profile.firstName }} {{ trainer.profile.lastName }}</p>
+                </div>
+                <div class="button-container">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+
+      </div>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="header">
+        <app-trainer-header></app-trainer-header>
+    </div>
+    <div class="main-container">
+      <div class="side-nav">
+        <app-trainer-navbar></app-trainer-navbar>
+      </div>
+      
+    <div class="mainbar">
+        <div *ngIf="profile" class="table-container">
+            <h2>Profile</h2>
+            <h3>{{profile.firstName}} {{profile.lastName}}</h3>
+            <table id="topic">
+                <tr>
+                    <th style="width: 200px;">Sr.No</th>
+                    <th>Skills Name</th>
+                    <th>Subtopic</th>
+                </tr>
+                <tr *ngFor="let t of profile.topics ,let i = index" >
+                    <td>{{i+1}}</td>
+                    <td>{{t.tname}}</td>
+                    <td>
+                        <button class="button" style="vertical-align:middle" (click)="topicDetails(trainerId,pid,t.tid)"><span>Subtopic </span></button>
+                    </td>
+
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    </div>
+  </div>

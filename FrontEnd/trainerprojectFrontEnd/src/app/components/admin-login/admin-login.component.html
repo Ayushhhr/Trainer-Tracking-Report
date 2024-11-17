@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    
+    <style>
+        .blueBackground {
+            background-color: #e86d6b;
+        }
+        
+    </style>
+</head>
+<body>
+    
+    <div class="container-fluid" id="loginBox">
+        
+            <div class="card">
+                <div class="card-header py-2 border-0 blueBackground d-flex justify-content-between">
+                    <img class="d-none" src="/assets/logo-footer.png">
+                    
+                </div>
+                <div class="card-body mx-1 mx-sm-5">
+                    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form-signin mx-1 mx-sm-5" id="signinForm">
+                        <input type="hidden" class="_csrf">
+                        <h5 class="card-title">ADMIN SIGN IN</h5>
+
+                        <div class="form-group">
+                            <label class="sr-only" for="username"></label>
+                            <input type="text" id="password" name="username" formControlName="username"  class="form-control" placeholder="Enter Username" required aria-describedby="nameHelp">
+                            <div *ngIf="loginForm.get('username')?.invalid && (loginForm.get('username')?.touched || submitted)">
+                                <small class="text-danger">Username is required.</small>
+                            </div>
+                            <small id="nameHelp" class="form-text text-muted"></small>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="sr-only" for="password"></label>
+                            <input type="{{ type }}" id="password" name="password" formControlName="password" class="form-control" placeholder="Enter Password" required aria-describedby="hint">
+                            <div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.touched || submitted)">
+                                <small class="text-danger">Password is required.</small>
+                            </div>
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" (click)="toggleVisibility()">
+                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                            <small id="hint" class="form-text text-muted"></small>
+                        
+                        </div>
+
+                        
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" id="submitBtn" class="btn blueBackground text-light fw-bold">LogIn</button>
+                          
+                        </div>
+
+                    </form>
+
+
+                </div>
+                <div class="card-footer blueBackground text-light text-center fw-bold  my-0">
+                    <span class="small">Copyright ©</span> <span class="fst-italic small">2024</span><span class="fw-bold ps-1"> <span
+                            class="d-none d-sm-inline-block">Software Development
+                            Cell,</span><span class="d-inline-block d-sm-none">SDA,</span>Symbiosis</span>
+                </div>
+            </div>
+        
+    </div>
+  
+    
+    <script>
+        /*<![CDATA[*/
+
+        function doRefreshCaptcha() {
+            var form = document.querySelector('form');
+            var dataText = new FormData(form);
+            $.ajax({
+                url: "vtopconnect/doRefreshCaptcha",
+                type: "POST",
+                cache: false,
+                data: dataText,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    $("#captchaRefresh").html(response);
+
+
+                }
+            });
+        }
+
+        /*]]>*/
+    </script>
+</body>
+</html>

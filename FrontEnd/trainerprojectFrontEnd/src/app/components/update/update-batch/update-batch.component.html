@@ -1,0 +1,77 @@
+<div class="container">
+    <div class="header">
+        <app-admin-header></app-admin-header>
+    </div>
+    <div class="main-container">
+      <div class="side-nav">
+        <app-admin-navbar></app-admin-navbar>
+      </div>
+       
+    <div class="edit-container">
+        <div class="panel-heading">
+            <h2>Edit Batch</h2>
+        </div>
+        <div class="form-container">
+            <form [formGroup]="batchForm" (ngSubmit)="onSubmit()">
+                
+    
+                <div class="form-group">
+                    <label >Batch Name:</label><br>
+                    <input formControlName="batch_name" type="text" id="bname" [(ngModel)]="batch.bname" name="bname" class="form-control">
+                    <div *ngIf="batchForm.get('batch_name')?.invalid && (batchForm.get('batch_name')?.touched || submitted)">
+                        <small class="text-danger">Batch Name is required.</small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="sname">Start Date:</label><br>
+                    <input formControlName="start_date" type="datetime-local" class="date-change" id="Test_DatetimeLocal" [(ngModel)]="batch.creation_date" name="date" >
+                </div>
+                <div class="form-group">
+                    <label for="sname">Start Date:</label><br>
+                    <input formControlName="end_date" type="datetime-local" class="date-change" id="Test_DatetimeLocal" [(ngModel)]="batch.end_date" name="enddate" >
+                </div>
+                
+                          
+                <div class="form-group select-container">
+                    <label for="tra">Trainers: </label><br>
+                    <select name="tra" id="tra" #selectTrainer >
+                        <option *ngFor="let p of profiles | async ; let i = index" value="{{i}}">{{ p.firstName }} {{ p.lastName }}</option>
+                    </select>
+                </div>
+                <button type="button" class="add-btn add-btn-primary" (click)="addTrainer(selectTrainer.value)">Add Trainer</button>
+             
+                <div>
+
+                    <div *ngIf="batch.profiles && batch.profiles.length > 0" class="skill-container" >
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Sr. No</th>
+                                    <th>Trainer Name</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let p of batch.profiles; let i = index">
+                                    <td>{{i+1}}</td>
+                                    <td>{{p.firstName}} {{p.lastName}}</td>
+                                    <td>
+                                        <mat-icon (click)="removeProfile(i, bid, p.id)" style="color: red;">clear</mat-icon>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                <div class="button-container">
+                    <button type="submit" class="btn btn-primary">Edit</button>
+                </div>
+            
+        </div>
+            </form>
+        <div class="back-btn-container">
+            <button (click)="list()" class="btn btn-primary">Back to Batch Details</button>
+        </div>
+    </div> 
+    </div>
+    </div>
+</div>

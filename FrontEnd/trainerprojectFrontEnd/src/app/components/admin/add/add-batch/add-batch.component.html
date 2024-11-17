@@ -1,0 +1,62 @@
+<div class="container">
+    <div class="header">
+        <app-admin-header></app-admin-header>
+    </div>
+    <div class="main-container">
+      <div class="side-nav">
+        <app-admin-navbar></app-admin-navbar>
+      </div>
+       
+      <div class="edit-container">
+        <div class="panel-heading">
+            <h2>Add Batch</h2>
+        </div>
+        <div class="form-container">
+            <form [formGroup]="batchForm" (ngSubmit)="onSubmit()" >
+
+                <div class="form-group">
+                    <label for="batch_name">Batch Name: </label><br>
+                    <input formControlName="batch_name" type="text" class="form-control" required [(ngModel)]="batch.bname" name="bname">
+                    <div *ngIf="batchForm.get('batch_name')?.invalid && (batchForm.get('batch_name')?.touched || submitted)">
+                        <small class="text-danger">Batch Name is required.</small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="batch_date">Start Date: </label><br>
+                    <input formControlName="batch_date" type="datetime-local" class="date-picker" required [(ngModel)]="batch.creation_date" name="date">
+                    <div *ngIf="batchForm.get('batch_date')?.invalid && (batchForm.get('batch_date')?.touched || submitted)">
+                        <small class="text-danger">Batch Date is required.</small>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="form-group select-container">
+                        <label for="trainerSelect">Trainers: </label>
+                        <select formControlName="trainerSelect" id="trainerSelect"  #selectTrainer >
+                            <option value="" disabled>Select Trainer</option>
+                            <option *ngFor="let p of profiles | async; let i = index" [value]="i">{{ p.firstName }} {{ p.lastName }}</option>
+                        </select>
+                        <div *ngIf="batchForm.get('trainerSelect')?.invalid && (batchForm.get('trainerSelect')?.touched || submitted)">
+                            <small class="text-danger">Trainer is required.</small>
+                        </div>
+
+                    </div>
+                    
+                   <button type="button" class="btn btn-primary" (click)="addTrainer(selectTrainer.value)">Add Trainer</button>
+                   <br>
+                   <p> Trainer not in the List? <a routerLink="/addTrainer">Add New</a> </p>
+                </div>
+              
+                <div *ngFor="let p of batch.profiles" >
+                    <p><b>Trainer:</b> {{p.firstName}} {{p.lastName}}</p>
+                </div>
+                <div class="button-container">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+
+        
+      </div>
+    </div>
+</div>

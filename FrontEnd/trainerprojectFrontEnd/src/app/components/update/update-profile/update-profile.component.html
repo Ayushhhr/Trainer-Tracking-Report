@@ -1,0 +1,103 @@
+<div class="container">
+    <div class="header">
+        <app-admin-header></app-admin-header>
+    </div>
+    <div class="main-container">
+      <div class="side-nav">
+        <app-admin-navbar></app-admin-navbar>
+      </div>
+       
+    <div class="edit-container">
+        <div class="panel-heading">
+            <h2>Edit Profile</h2>
+        </div>
+        <div class="form-container">
+            <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+                
+    
+                <div class="form-group">
+                    <label >First Name:</label><br>
+                    <input formControlName="first_name" type="text" id="fname" [(ngModel)]="profile.firstName" name="fname" class="form-control">
+                    <div *ngIf="profileForm.get('first_name')?.invalid && (profileForm.get('first_name')?.touched || submitted)">
+                        <small class="text-danger">First Name is required.</small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label >Last Name:</label><br>
+                    <input formControlName="last_name" type="text" id="lname" [(ngModel)]="profile.lastName" name="lname" class="form-control">
+                    <div *ngIf="profileForm.get('last_name')?.invalid && (profileForm.get('last_name')?.touched || submitted)">
+                        <small class="text-danger">Last Name is required.</small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="sname">Mobile No:</label><br>
+                    <input formControlName="mobile_no" type="text" id="mob" [(ngModel)]="profile.mobNum" name="mob" class="form-control">
+                    <div *ngIf="profileForm.get('mobile_no')?.invalid && (profileForm.get('mobile_no')?.touched || submitted)">
+                        <small class="text-danger">Mobile Number is required.</small>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="sname">Email:</label><br>
+                    <input formControlName="email" type="text" id="email" [(ngModel)]="profile.email" name="email" class="form-control">
+                    <div *ngIf="profileForm.get('email')?.invalid && (profileForm.get('email')?.touched || submitted)">
+                        <small class="text-danger">Email is required.</small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="sname">Address:</label><br>
+                    <input formControlName="address" type="text" id="add" [(ngModel)]="profile.address" name="add" class="form-control">
+                    <div *ngIf="profileForm.get('address')?.invalid && (profileForm.get('address')?.touched || submitted)">
+                        <small class="text-danger">Address is required.</small>
+                    </div>
+                </div>
+                            
+                
+                <div class="form-group select-container">
+                    <label for="pro">Skills: </label><br>
+                    <select name="top" id="top" #selectTopic >
+                        <option *ngFor="let t of topics | async ; let i = index" value="{{i}}">{{ t.tname }}</option>
+                    </select>
+                    
+                </div>
+                <button type="button" class="add-btn add-btn-primary" (click)="addTopicProfile(selectTopic.value)">Add Skills</button>
+             
+                <div>
+
+                    <div *ngIf="profile.topics && profile.topics.length > 0" class="skill-container" >
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Sr. No</th>
+                                    <th>Trainer Skills</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let t of profile.topics; let i = index">
+                                    <td>{{i+1}}</td>
+                                    <td>{{t.tname}}</td>
+                                    <td>
+                                        <mat-icon (click)="removeSkill(i)" style="color: red;">clear</mat-icon>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                   
+                <div class="button-container">
+                    <button type="submit" class="btn btn-primary" >Edit</button>
+                </div>
+            
+        </div>
+            </form>
+        <div class="back-btn-container">
+            <button (click)="list()" class="btn btn-primary">Back to Profile Details</button>
+        </div>
+    </div> 
+    </div>
+    </div>
+</div>

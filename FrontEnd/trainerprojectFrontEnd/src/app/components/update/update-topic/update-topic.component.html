@@ -1,0 +1,76 @@
+
+<div class="container">
+    <div class="header">
+        <app-admin-header></app-admin-header>
+    </div>
+    <div class="main-container">
+      <div class="side-nav">
+        <app-admin-navbar></app-admin-navbar>
+      </div>
+      
+    <div class="edit-container">
+        <div class="panel-heading">
+            <h2>Edit Topic</h2>
+        </div>
+        <div class="form-container">
+            <form [formGroup]="topicForm" (ngSubmit)="onSubmit()">
+                
+    
+                <div class="form-group">
+                    <label for="sname">Topic Name:</label><br>
+                    <input formControlName="topic_name" type="text" id="tname" [(ngModel)]="topic.tname" name="tname" class="form-control">
+                    <div *ngIf="topicForm.get('topic_name')?.invalid && (topicForm.get('topic_name')?.touched || submitted)">
+                        <small class="text-danger">Topic Name is required.</small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <p><b>Total Hours:</b> {{ totalHours }}</p>
+                </div>
+                
+                <div class="form-group select-container">
+                    <label for="pro">Sub Topics: </label><br>
+                    <select name="top" id="top" #selectSubtopic >
+                        <option *ngFor="let s of subtopics | async ; let i = index" value="{{i}}">{{ s.sname }}</option>
+                    </select>
+                </div>
+                <button type="button" class="add-btn add-btn-primary" (click)="addSubtopic(selectSubtopic.value)">Add Sub Topics</button>
+             
+                <div>
+                    <div *ngIf="topic.subtopic && topic.subtopic.length > 0" class="skill-container" >
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Sr. No</th>
+                                    <th>Subtopic Name</th>
+                                    <th>Hours</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let s of topic.subtopic; let i = index">
+                                    <td>{{i+1}}</td>
+                                    <td>{{s.sname}}</td>
+                                    <td>{{ s.shours }}</td>
+                                    <td>
+                                        <mat-icon (click)="removeTopic(i)" style="color: red;">clear</mat-icon>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    
+                <div class="button-container">
+                    <button type="submit" class="btn btn-primary">Edit</button>
+                </div>
+            
+        </div>
+            </form>
+        <div class="back-btn-container">
+            <button (click)="list()" class="btn btn-primary">Back to Topic Details</button>
+        </div>
+    </div> 
+    </div>
+    </div>
+    </div>
+  

@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="header">
+        <app-trainer-header></app-trainer-header>
+    </div>
+    <div class="main-container">
+      <div class="side-nav">
+        <app-trainer-navbar></app-trainer-navbar>
+      </div>
+      <div class="mainbar">
+        <div class="table-container">
+            <h1 class="main-title">{{topic.tname}} Details Table</h1>
+             <!--search box-->
+            <!--<div class="topnav">
+              <input type="text" [(ngModel)]="searchtext" placeholder="Search..">
+            </div>-->
+                <table id="trainer" *ngIf="topic" class="topic-details">
+                        <tr>
+                            <th style="width: 200px;">Sr.No</th>
+                            <th>SubTopic</th>
+                            <th>Hours Completed</th>
+                            <th>Action</th>
+                        </tr>
+        
+                        <tr *ngFor="let s of topic.subtopic, let i = index" class="subtopic-details" >
+                            <td>{{i+1}}</td>
+                            <td>{{s.sname}}</td>
+                            <td>{{ subtopicsTaughtHours[s.sid] }}</td>
+                            <td>
+                              <input type="number" [(ngModel)]="subtopicsTaughtHours[s.sid]" name="taughtHours{{ s.sid }}">
+                              <button (click)="submitTaughtHours(s)" class="btn btn-info" style="background-color: rgb(133, 209, 112); color: black; margin-top: 10px;">Submit</button>
+                            </td>
+                        </tr>
+                        
+                </table>
+            </div>
+      </div>
+    
+
+
+    </div>
+  </div>

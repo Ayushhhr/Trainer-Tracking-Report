@@ -1,0 +1,71 @@
+<div class="container">
+    <div class="header">
+        <app-admin-header></app-admin-header>
+    </div>
+    <div class="main-container">
+      <div class="side-nav">
+        <app-admin-navbar></app-admin-navbar>
+      </div>
+       
+    <div class="edit-container">
+        <div class="panel-heading">
+            <h2>Edit Course</h2>
+        </div>
+        <div class="form-container">
+            <form [formGroup]="courseForm" (ngSubmit)="onSubmit()">
+                
+    
+                <div class="form-group">
+                    <label for="sname">Course Name:</label><br>
+                    <input formControlName="course_name" type="text" id="cname" [(ngModel)]="course.cname" name="cname" class="form-control">
+                    <div *ngIf="courseForm.get('course_name')?.invalid && (courseForm.get('course_name')?.touched || submitted)">
+                        <small class="text-danger">Course Name is required.</small>
+                    </div>
+                </div>
+                            
+                
+                <div class="form-group select-container">
+                    <label for="pro">Topics: </label><br>
+                    <select name="top" id="top" #selectTopic >
+                        <option *ngFor="let t of topics | async ; let i = index" value="{{i}}">{{ t.tname }}</option>
+                    </select>
+                </div>
+                <button type="button" class="add-btn add-btn-primary" (click)="addTopic(selectTopic.value)">Add Topics</button>
+             
+                <div>
+                    <div *ngIf="course.topic && course.topic.length > 0" class="skill-container" >
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Sr. No</th>
+                                    <th>Topic Name</th>
+                                    <th>Hours</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let t of course.topic; let i = index">
+                                    <td>{{i+1}}</td>
+                                    <td>{{t.tname}}</td>
+                                    <td> {{t.hours}}</td>
+                                    <td>
+                                        <mat-icon (click)="removeTopic(i)" style="color: red;">clear</mat-icon>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                <div class="button-container">
+                    <button type="submit" class="btn btn-primary">Edit</button>
+                </div>
+            
+        </div>
+            </form>
+        <div class="back-btn-container">
+            <button (click)="list()" class="btn btn-primary">Back to Course Details</button>
+        </div>
+    </div> 
+    </div>
+    </div>
+</div>

@@ -1,0 +1,125 @@
+.main-container {
+    display: flex;
+    .side-nav {
+      width: 250px;
+      min-width: 230px;
+      min-height: calc(100vh - 70px);
+      background-color: #113c60;
+      color: #fff;
+      box-shadow: 5px 5px 5px #939393;
+      @media only screen and (max-width: 1300px) {
+        width: 100px;
+        min-width: 100px;
+      }
+    }
+    .main {
+      padding: 30px;
+    }
+  }
+
+  
+  .edit-container {
+    width: 35%;
+    height: 30%;
+    margin: 30px auto; 
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    background-color: #f2f2f2;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.form-container {
+    margin-bottom: 20px;
+   
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    font-size: 18px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+}
+
+button {
+    display: block;
+    width: 100%; 
+    margin-top: 15px; 
+    padding: 10px;
+    font-size: 16px;
+}
+
+.back-btn-container {
+    text-align: center;
+}
+
+/* Apply color to the edit button */
+button[type="submit"] {
+    background-color: #3c9aff; /* Example color */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Reduce size of the edit button */
+button[type="submit"] {
+    width: auto;
+    padding: 8px 20px; 
+}
+button[type="submit"]:hover {
+    background-color: #007bff;
+}
+.panel-heading {
+    text-align: center; 
+}
+
+.panel-heading h2 {
+    margin: 15px; 
+    background-color: #e34d4a;
+    border-radius: 5px; 
+    padding: 8px;
+    color: #fff;
+}
+.button-container {
+    text-align: center; 
+}
+
+.button-container button {
+    display: inline-block; 
+}
+
+/* Increase the size of the select element */
+.select-container {
+    position: relative;
+    display: inline-block;
+  }
+  .select-container select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    appearance: none; /* Removes default arrow icon in some browsers */
+  }
+  .select-container::after {
+    content: '\25BC'; /* Unicode arrow character */
+    position: absolute;
+    top: 70%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none; /* Allow clicking through */
+  }
+  
+
+  .text-danger{
+    color: red;
+  }

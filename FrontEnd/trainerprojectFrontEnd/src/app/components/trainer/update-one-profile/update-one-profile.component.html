@@ -1,0 +1,82 @@
+<div class="container">
+    <div class="header">
+        <app-trainer-header></app-trainer-header>
+    </div>
+    <div class="main-container">
+      <div class="side-nav">
+        <app-trainer-navbar></app-trainer-navbar>
+      </div>
+       
+      <div class="edit-container">
+        <div class="panel-heading">
+            <h2>Trainer Edit Profile</h2>
+        </div>
+        <div class="form-container">
+            <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+
+                
+                <div class="form-group">
+                    <label for="name">First Name</label><br>
+                    <input formControlName="first_name" type="text" class="form-control" id="firstName" required [(ngModel)]="profile.firstName" name="fname">
+                    <div *ngIf="profileForm.get('first_name')?.invalid && (profileForm.get('first_name')?.touched || submitted)">
+                        <small class="text-danger">First Name is required.</small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="name">Last Name</label>
+                    <input formControlName="last_name" type="text" class="form-control" id="lastName" required [(ngModel)]="profile.lastName" name="lname">
+                    <div *ngIf="profileForm.get('last_name')?.invalid && (profileForm.get('last_name')?.touched || submitted)">
+                        <small class="text-danger">Last Name is required.</small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="name">Mobile No</label>
+                    <input formControlName="mobile_no" type="text" class="form-control" id="mob" required [(ngModel)]="profile.mobNum" name="mob">
+                    <div *ngIf="profileForm.get('mobile_no')?.invalid && (profileForm.get('mobile_no')?.touched || submitted)">
+                        <small class="text-danger">Mobile Number is required.</small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="name">Email</label>
+                    <input formControlName="email" type="text" class="form-control" id="email" required [(ngModel)]="profile.email" name="email">
+                    <div *ngIf="profileForm.get('email')?.invalid && (profileForm.get('email')?.touched || submitted)">
+                        <small class="text-danger">Email is required.</small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="name">Address</label>
+                    <input formControlName="address" type="text" class="form-control" id="address" required [(ngModel)]="profile.address" name="address">
+                    <div *ngIf="profileForm.get('address')?.invalid && (profileForm.get('address')?.touched || submitted)">
+                        <small class="text-danger">Address is required.</small>
+                    </div> 
+                </div>
+                
+                <div class="form-group">
+                    <div class="form-group select-container">
+                        <label for="pro">Skills: </label>
+                        <select name="top" id="top" #selectTopic >
+                            <option *ngFor="let t of topics | async ; let i = index" value="{{i}}">{{ t.tname }}</option>
+                        </select>
+                    </div>
+                    
+                   <button type="button" class="btn btn-primary" (click)="addTopicProfile(selectTopic.value)">Add Skills</button>
+                   <br>
+                </div>
+              
+                <div *ngFor="let t of profile.topics" >
+                    <p><b>Skill:</b> {{t.tname}}</p>
+                </div>
+                <div class="button-container">
+                    <button type="submit" class="btn btn-primary">Edit</button>
+                </div>
+            </form>
+        </div>
+
+       
+      </div>
+    </div>
+</div>

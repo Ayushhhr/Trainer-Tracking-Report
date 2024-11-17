@@ -1,0 +1,47 @@
+
+<div class="container">
+    <div class="header">
+        <app-admin-header></app-admin-header>
+    </div>
+    <div class="main-container">
+      <div class="side-nav">
+        <app-admin-navbar></app-admin-navbar>
+      </div>
+      
+    <div class="edit-container">
+        <div class="panel-heading">
+            <h2>Edit SubTopic</h2>
+        </div>
+        <div class="form-container">
+            <form [formGroup]="subtopicForm" (ngSubmit)="onSubmit()">
+                
+    
+                <div class="form-group">
+                    <label for="sname">SubTopic Name:</label><br>
+                    <input formControlName="subtopic_name" type="text" id="sname" [(ngModel)]="subtopic.sname" name="sname" class="form-control">
+                    <div *ngIf="subtopicForm.get('subtopic_name')?.invalid && (subtopicForm.get('subtopic_name')?.touched || submitted)">
+                        <small class="text-danger">Subtopic Name is required.</small>
+                    </div>
+                </div>
+                            
+                <div class="form-group">
+                    <label for="shours">Hours:</label><br>
+                    <input formControlName="subtopic_hours" type="text" id="hrs" [(ngModel)]="subtopic.shours" name="hrs" class="form-control">
+                    <div *ngIf="subtopicForm.get('subtopic_hours')?.invalid && (subtopicForm.get('subtopic_hours')?.touched || submitted)">
+                        <small class="text-danger">Subtopic Hours is required.</small>
+                    </div>
+                </div>
+                    
+                <div class="button-container">
+                    <button type="submit" class="btn btn-primary">Edit</button>
+                </div>
+            </form>
+        </div>
+    
+        <div class="back-btn-container">
+            <button (click)="list()" class="btn btn-primary">Back to Subtopic Details</button>
+        </div>
+    </div> 
+    </div>
+  </div>
+  

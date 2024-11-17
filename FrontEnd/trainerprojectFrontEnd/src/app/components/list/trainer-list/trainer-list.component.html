@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="header">
+        <app-admin-header></app-admin-header>
+    </div>
+    <div class="main-container">
+      <div class="side-nav">
+        <app-admin-navbar></app-admin-navbar>
+      </div>
+      
+      <div class="mainbar">
+        <div class="table-container">
+            <h1 class="main-title">Username Details </h1>
+            <!--search box-->
+            <div class="topnav">
+                <input type="text" [(ngModel)]="searchtext" placeholder="Search..">
+            </div>
+                <table id="trainer">
+                        <tr>
+                            <th style="width: 200px;">Sr.No</th>
+                            <th>Username</th>
+                            <th>Action</th>
+                        </tr>
+        
+                        
+                        <ng-container *ngIf="(trainers | async | trainerFilter:searchtext) as filteredTrainers">
+                            <ng-container *ngIf="filteredTrainers.length > 0; else notFound">
+                                <tr *ngFor="let t of filteredTrainers; let i = index" >
+
+                                    <td>{{i+1}}</td>
+                                    <td>{{t.username}}</td>
+                            
+                                    <td>
+                                        <mat-icon class="mat" style="color: rgb(237, 74, 74);" (click)="deleteTrainer(t.id)">delete</mat-icon>
+                                    </td>
+                                </tr>
+                            </ng-container>
+                        </ng-container>
+                        
+                </table>
+                <ng-template #notFound>
+                    <tr>
+                        <td colspan="3" class="not-found">No records found</td>
+                    </tr>
+                </ng-template>
+            </div>
+      </div>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="header">
+        <app-admin-header></app-admin-header>
+    </div>
+    <div class="main-container">
+      <div class="side-nav">
+        <app-admin-navbar></app-admin-navbar>
+      </div>
+      
+    <div class="mainbar">
+        <div *ngIf="profile" class="profile-details">
+            <h2>Trainer Name: {{profile.firstName}} {{profile.lastName}}</h2>
+            
+            <h3></h3>
+
+            <table id="topic">
+                <tr>
+                    <th style="width: 200px;">Sr.No</th>
+                    <th>Topics Name</th>
+                    <th>Subtopics</th>
+                </tr>
+                <tr *ngFor="let t of profile.topics ,let i = index" >
+                    <td>{{i+1}}</td>
+                    <td>{{t.tname}}</td>
+                    <td>
+                        <button class="button" (click)="topicDetails(bid,t.tid)" ><span>Subtopics </span></button>
+                    
+             
+                    </td>
+
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    </div>
+  </div>

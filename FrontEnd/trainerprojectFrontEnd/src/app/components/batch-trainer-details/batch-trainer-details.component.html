@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="header">
+        <app-admin-header></app-admin-header>
+    </div>
+    <div class="main-container">
+      <div class="side-nav">
+        <app-admin-navbar></app-admin-navbar>
+      </div>
+      
+    <div class="mainbar">
+        <div *ngIf="batch" class="table-container">
+            <h2>Batch {{batch.bname}}</h2>
+            <h3>Creation Date: {{batch.creation_date}}</h3>
+
+            <table id="topic">
+                <tr>
+                    <th style="width: 200px;">Sr.No</th>
+                    <th>Trainers Name</th>
+                    <th>Topics</th>
+                </tr>
+                <tr *ngFor="let p of batch.profiles ,let i = index" >
+                    <td>{{i+1}}</td>
+                    <td>{{p.firstName}} {{p.lastName}}</td>
+                    <td>
+                        <button class="button" style="vertical-align:middle" (click)="batchwiseDetails(bid,p.id)"><span>Topics </span></button>
+                    
+             
+                    </td>
+
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    </div>
+  </div>
